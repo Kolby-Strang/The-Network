@@ -22,12 +22,10 @@
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
-import { Profile } from '../models/Profile';
+import { Account } from '../models/Account';
 export default {
     props: {
-        profile: { type: Profile, required: true }
+        profile: { type: Account, required: true }
     },
     setup() {
         return {}

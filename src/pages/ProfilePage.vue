@@ -22,11 +22,11 @@
 import { AppState } from '../AppState';
 import { onMounted, ref, watchEffect } from 'vue';
 import Pop from '../utils/Pop';
-import { profilesService } from '../services/ProfilesService.js'
 import CreatePostCard from '../components/CreatePostCard.vue';
 import PostCard from '../components/PostCard.vue';
 import PaginationComponent from '../components/PaginationComponent.vue';
 import ProfileHeader from '../components/ProfileHeader.vue';
+import { accountService } from '../services/AccountService';
 export default {
     props: {
         profileId: { type: String, required: true }
@@ -39,7 +39,7 @@ export default {
         // FUNCTIONS 
         async function getProfile() {
             try {
-                profile.value = await profilesService.getProfileById(props.profileId);
+                profile.value = await accountService.getProfileById(props.profileId);
             }
             catch (error) {
                 Pop.error(error);
@@ -47,7 +47,7 @@ export default {
         }
         async function getPosts() {
             try {
-                await profilesService.getPostsByProfileId(props.profileId)
+                await accountService.getPostsByProfileId(props.profileId)
                 posts.value = AppState.posts
             } catch (error) {
                 Pop.error(error);
