@@ -1,41 +1,62 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-9">
+        <div class="container-fluid">
+          <div class="row">
+
+            <!-- TODO make create post component -->
+            <div v-if="account.id" class="col-12 mt-5">
+              <CreatePostCard />
+            </div>
+
+            <div v-for="post in posts" :key="post.id" class="col-12 mt-5">
+              <!-- POST COMPONENT -->
+              <PostCard :post="post" />
+            </div>
+
+            <PaginationComponent />
+
+          </div>
+        </div>
+      </div>
+      <div class="col-3 d-none d-md-block">
+        ADS
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { computed, onMounted } from 'vue';
+import { postsService } from '../services/PostsService';
+import Pop from '../utils/Pop';
+import { AppState } from '../AppState.js'
+import CreatePostCard from '../components/CreatePostCard.vue';
+import PaginationComponent from '../components/PaginationComponent.vue';
+
 export default {
   setup() {
-    return {}
-  }
+    // VARIABLES
+    const posts = computed(() => AppState.posts);
+    const account = computed(() => AppState.account)
+    // FUNCTIONS
+    async function getPosts() {
+      try {
+        await postsService.getPosts();
+      }
+      catch (error) {
+        Pop.error(error);
+      }
+    }
+    // LIFECYCLE / WATCHERS
+    onMounted(() => {
+      getPosts();
+    });
+    return { posts, account };
+  },
+  components: { CreatePostCard, PaginationComponent }
 }
 </script>
 
-<style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: 50vw;
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>

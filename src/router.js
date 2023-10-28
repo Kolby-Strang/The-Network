@@ -12,6 +12,12 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
+    path: '/profile/:profileId',
+    name: 'Profile',
+    component: loadPage('ProfilePage'),
+    props: true
+  },
+  {
     path: '/about',
     name: 'About',
     component: loadPage('AboutPage')
