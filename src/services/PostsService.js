@@ -41,7 +41,12 @@ class PostsService {
         logger.log('Deleted Post', res.data)
         AppState.posts.splice(targetIndex, 1)
     }
-
+    async getPostsByQuery(searchInput) {
+        const res = await api.get(`/api/posts?query=${searchInput}`)
+        logger.log(res.data)
+        AppState.posts = res.data.posts.map(pojo => new Post(pojo))
+        logger.log(AppState.posts)
+    }
 }
 
 export const postsService = new PostsService()

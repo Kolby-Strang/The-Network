@@ -1,3 +1,4 @@
+import { applyStyles } from '@popperjs/core'
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
 import { Post } from '../models/Post'
@@ -29,6 +30,11 @@ class AccountService {
     AppState.posts = newPosts
     AppState.page.newer = res.data.newer
     AppState.page.older = res.data.older
+  }
+  async getProfilesByQuery(searchInput) {
+    const res = await api.get(`/api/profiles?query=${searchInput}`)
+    logger.log(res.data)
+    return res.data.map(pojo => new Account(pojo))
   }
 }
 

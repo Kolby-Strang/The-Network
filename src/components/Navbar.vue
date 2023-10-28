@@ -13,7 +13,7 @@
       <ul class="navbar-nav me-auto">
         <li>
           <router-link :to="{ name: 'Search' }" class="btn text-success lighten-30 selectable text-uppercase">
-            Search
+            <i class="mdi mdi-magnify"></i>
           </router-link>
         </li>
       </ul>
