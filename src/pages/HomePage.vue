@@ -1,28 +1,20 @@
 <template>
   <div class="container-fluid">
+
     <div class="row">
-      <div class="col-12 col-md-9">
-        <div class="container-fluid">
-          <div class="row">
 
-            <!-- TODO make create post component -->
-            <div v-if="account.id" class="col-12 mt-5">
-              <CreatePostCard />
-            </div>
-
-            <div v-for="post in posts" :key="post.id" class="col-12 mt-5">
-              <!-- POST COMPONENT -->
-              <PostCard :post="post" />
-            </div>
-
-            <PaginationComponent />
-
-          </div>
-        </div>
+      <!-- TODO make create post component -->
+      <div v-if="account.id" class="col-12 mt-5">
+        <CreatePostCard />
       </div>
-      <div class="col-3 d-none d-md-block">
-        ADS
+
+      <div v-for="post in posts" :key="post.id" class="col-12 mt-5">
+        <!-- POST COMPONENT -->
+        <PostCard :post="post" />
       </div>
+
+      <PaginationComponent />
+
     </div>
   </div>
 </template>

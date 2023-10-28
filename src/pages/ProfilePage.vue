@@ -1,6 +1,6 @@
 <template>
     <div class="component">
-        Yo! {{ profileId }}
+        Yo! {{ profile }}
 
     </div>
 </template>
@@ -30,7 +30,7 @@ export default {
         onMounted(() => {
             getProfile()
         })
-        return {}
+        return { profile }
     }
 };
 </script>

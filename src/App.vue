@@ -2,8 +2,15 @@
   <header>
     <Navbar />
   </header>
-  <main>
-    <router-view />
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-9">
+        <router-view />
+      </div>
+      <div class="col-3 d-none d-md-block">
+        ads
+      </div>
+    </div>
   </main>
 </template>
 
