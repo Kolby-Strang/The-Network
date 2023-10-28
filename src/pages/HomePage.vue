@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 import { postsService } from '../services/PostsService';
 import Pop from '../utils/Pop';
 import { AppState } from '../AppState.js'
@@ -30,7 +30,7 @@ import PaginationComponent from '../components/PaginationComponent.vue';
 export default {
   setup() {
     // VARIABLES
-    const posts = computed(() => AppState.posts);
+    const posts = ref(AppState.posts);
     const account = computed(() => AppState.account)
     // FUNCTIONS
     async function getPosts() {
@@ -45,6 +45,11 @@ export default {
     onMounted(() => {
       getPosts();
     });
+    watchEffect(() => {
+      if (AppState.posts) {
+        posts.value = AppState.posts
+      }
+    })
     return { posts, account };
   },
   components: { CreatePostCard, PaginationComponent }

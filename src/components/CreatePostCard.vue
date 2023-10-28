@@ -16,7 +16,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                             <div class="form-floating mb-3">
                                 <input v-model="editable.imgUrl" type="url" class="form-control" id="floatingInput"
-                                    maxlength="500">
+                                    maxlength="500" placeholder="Image Url">
                                 <label for="floatingInput">Image Url...</label>
                             </div>
                             <button type="submit" class="btn"><i class="fs-4 mdi mdi-send primary-text"></i>Post</button>
