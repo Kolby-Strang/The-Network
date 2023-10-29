@@ -19,6 +19,7 @@ export default {
         async function newPage() {
             try {
                 await postsService.getPosts(pageData.value.newer)
+                window.scrollTo(0, 0)
             } catch (error) {
                 Pop.error(error)
             }
@@ -26,6 +27,8 @@ export default {
         async function oldPage() {
             try {
                 await postsService.getPosts(pageData.value.older)
+                window.scrollTo(0, 0)
+
             } catch (error) {
                 Pop.error(error)
             }

@@ -1,19 +1,20 @@
 <template>
     <div class="container-fluid post-card">
         <div class="row">
-            <div class="col-12">
-                <img class="img-fluid" :src="profile.coverImg" alt="">
+            <div class="col-12 position-relative">
+                <img class="banner-img" :src="profile.coverImg" alt="">
+                <img class="creator-img" :src="profile.picture" alt="">
             </div>
-            <div class="col-12 d-flex justify-content-end fs-1">
+            <div class="col-12 d-flex justify-content-end fs-0 height-adj">
                 <a v-if="profile.github" :href="profile.github"><i class="mdi mdi-github"></i> </a>
                 <a v-if="profile.linkedin" :href="profile.linkedin"><i class="mdi mdi-linkedin"></i> </a>
                 <a v-if="profile.resume" :href="profile.resume"><i class="mdi mdi-post"></i> </a>
             </div>
             <div class="col-12">
                 <div class="px-4">
-                    <p>{{ profile.class }}</p>
-                    <p>{{ profile.name }}</p>
-                    <p>{{ profile.bio }}</p>
+                    <p class="fs-4 text-secondary mb-0">{{ profile.class }}</p>
+                    <p class="fs-2 fw-bold">{{ profile.name }}</p>
+                    <p class="mb-4">{{ profile.bio }}</p>
                 </div>
             </div>
         </div>
@@ -35,13 +36,18 @@ export default {
 
 
 <style lang="scss" scoped>
+$img-width: 16vh;
+
 .creator-img {
-    width: 6vw;
-    height: 6vw;
+    width: $img-width;
+    height: $img-width;
     object-fit: cover;
     object-position: center;
     border-radius: 50%;
-    margin-right: 1em;
+    position: absolute;
+    left: 5vw;
+    bottom: -$img-width/2;
+    border: var(--primary-color) solid 5px;
 }
 
 .post-card {
@@ -49,5 +55,20 @@ export default {
     box-shadow: 0 0 20px #aaaaaa;
     padding: 0;
     margin-top: 1em;
+}
+
+.banner-img {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.fs-0 {
+    font-size: 40pt;
+}
+
+.height-adj {
+    height: $img-width/2;
 }
 </style>

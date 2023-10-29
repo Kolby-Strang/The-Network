@@ -3,12 +3,17 @@
 
     <div class="row">
 
+
       <!-- TODO make create post component -->
       <div v-if="account.id" class="col-12 mt-5">
         <CreatePostCard />
       </div>
 
-      <div v-for="post in posts" :key="post.id" class="col-12 mt-5">
+      <div class="col-12">
+        <PaginationComponent />
+      </div>
+
+      <div v-for="post in posts" :key="post.id" class="col-12 mb-5">
         <!-- POST COMPONENT -->
         <PostCard :post="post" />
       </div>
@@ -46,9 +51,7 @@ export default {
       getPosts();
     });
     watchEffect(() => {
-      if (AppState.posts) {
-        posts.value = AppState.posts
-      }
+      posts.value = AppState.posts
     })
     return { posts, account };
   },
