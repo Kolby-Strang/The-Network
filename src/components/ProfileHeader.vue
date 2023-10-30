@@ -12,9 +12,9 @@
             </div>
             <div class="col-12">
                 <div class="px-4">
-                    <p class="fs-4 text-secondary mb-0">{{ profile.class }}</p>
-                    <p class="fs-2 fw-bold">{{ profile.name }}</p>
+                    <p class="fs-4 text-secondary mb-0 d-inline">{{ profile.class }}</p>
                     <i v-if="profile.graduated" class="mdi mdi-school fs-3 primary-text"></i>
+                    <p class="fs-2 fw-bold">{{ profile.name }}</p>
                     <p class="mb-4">{{ profile.bio }}</p>
                 </div>
             </div>
