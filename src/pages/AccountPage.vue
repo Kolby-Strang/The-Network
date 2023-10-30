@@ -75,6 +75,7 @@ import { computed, onMounted, ref, watch, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
 import { accountService } from '../services/AccountService';
+import { logger } from '../utils/Logger';
 export default {
   setup() {
     // VARIABLES
@@ -82,11 +83,6 @@ export default {
     // FUNCTIONS
     async function handleSubmit() {
       try {
-        if (editable.value.graduated == 'on') {
-          editable.value.graduated = true
-        } else {
-          editable.value.graduated = false
-        }
         await accountService.editAccount(editable.value)
       } catch (error) {
         Pop.error(error)
@@ -94,7 +90,7 @@ export default {
     }
     // LIFECYCLE
     watchEffect(() => {
-      editable.value = AppState.account
+      editable.value = { ...AppState.account }
     })
     return {
       account: computed(() => AppState.account),
